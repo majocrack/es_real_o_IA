@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Imagen real o IA?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .game-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+    }
+    .game-container img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .buttons button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .buttons button:hover {
+      background-color: #45a049;
+    }
+    .score {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h2>¿Es real o IA?</h2>
+    <img id="image" src="" alt="Imagen aleatoria">
+    <div class="buttons">
+      <button onclick="checkAnswer('real')">Real</button>
+      <button onclick="checkAnswer('ia')">IA</button>
+    </div>
+    <div class="score">
+      <p id="score">Puntaje: 0</p>
+    </div>
+  </div>
+
+  <script>
+    const images = [
+      
+    {src:'images/manzana.jpg', alt: "Manzana real", correct: 'real'},
+      {src:'images/pera.jpg', alt: "Pera real", correct: 'real'},
+      {src:'images/pizza.jpg', alt: "Pizza IA", correct: 'ia'},
+      {src:'images/torta.jpg', alt: "Torta IA", correct: 'ia'},
+      {src:'images/desayuno.jpg', alt: "Desayuno real", correct: 'real'},
+      {src:'images/verduleria.jpg', alt: "Verduleria IA", correct: 'ia'},
+      {src:'images/iglesia.jpg', alt: "Iglesia IA", correct: 'ia'},
+      {src:'images/flor.jpg', alt: "Flor real", correct: 'real'},
+      {src:'images/paisaje nevado.jpg', alt: "Paisaje nevado real", correct: 'real'},
+      {src:'images/mujer.jpg', alt: "Mujer real", correct: 'real'},
+    ];
+
+    let currentImageIndex = 0;
+    let score = 0;
+
+    function loadImage() {
+      const image = images[currentImageIndex];
+      document.getElementById('image').src = image.src;
+      document.getElementById('image').alt = image.alt;
+    }
+
+    function checkAnswer(answer) {
+      const correctAnswer = images[currentImageIndex].correct;
+      if (answer ===correctAnswer ) {
+        score++;
+      }
+      currentImageIndex++;
+      if (currentImageIndex < images.length) {
+        loadImage();
+        document.getElementById('score').textContent = `Puntaje: ${score}`;
+      } else {
+        alert(`Juego terminado. Puntaje final: ${score}`);
+      }
+    }
+
+    loadImage();
+  </script>
+</body>
+</html>
+
+
+
+
+
